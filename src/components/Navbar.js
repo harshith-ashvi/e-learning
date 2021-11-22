@@ -12,8 +12,8 @@ const Navbar = (props) => {
                         Reopto
                     </Typography>
                     <Button color="inherit"><Link to="/">Home</Link></Button>
-                    <Button color="inherit"><Link to="#">Sign up</Link></Button>
-                    <Button color="inherit"><Link to="#">Sign in</Link></Button>
+                    <Button color="inherit"><Link to="/register">Sign up</Link></Button>
+                    <Button color="inherit"><Link to="/login">Sign in</Link></Button>
                 </Toolbar>
             </AppBar>
         </Box>
