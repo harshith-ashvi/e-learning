@@ -14,6 +14,14 @@ const userReducer = (state = userInitialState, action) => {
             return {...state, errors: {}}
         }
 
+        case "LOADING_UPDATE" : {
+            return {...state, isLoading: !state.isLoading}
+        }
+
+        case "ADD_USER_DETAILS" : {
+            return {...state, data: action.payload, errors: {}}
+        }
+
         default : {
             return {...state}
         }

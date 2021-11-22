@@ -90,7 +90,7 @@ const Register = (props) => {
                 <Typography variant="h4" component="h1">
                     Sign up
                 </Typography>
-                <Box component="form" noValidate sx={{mt: 1}} onSubmit={handleSubmit} onReset={handleReset}>
+                <Box component="form" noValidate sx={{mt: 3}} onSubmit={handleSubmit} onReset={handleReset}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography variant="subtitle1" gutterBottom>
