@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { useSelector, useDispatch } from "react-redux";
-import { clearUserErrors, startGetAdminDetails, startLoginAdmin } from "../../actions/userActions";
+import { clearUserErrors, startLoginAdmin } from "../../actions/userActions";
 
 const mainBoxStyle = {
     mt: 8,
@@ -65,8 +65,6 @@ const Login = (props) => {
             } else {
                 console.log("student", values)
             }
-            
-            // dispatch(startAdminRegister(values, resetForm, redirectLogin))
         },
         // onReset: (values, { resetForm }) => {
         //     resetForm()

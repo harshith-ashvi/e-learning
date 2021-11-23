@@ -98,3 +98,9 @@ export const loadingUpdate = () => {
         type: "LOADING_UPDATE"
     }
 }
+
+export const removeData = () => {
+    return {
+        type: "REMOVE_DATA"
+    }
+}

@@ -22,6 +22,10 @@ const userReducer = (state = userInitialState, action) => {
             return {...state, data: action.payload, errors: {}}
         }
 
+        case "REMOVE_DATA" : {
+            return {...state, data: {}}
+        }
+
         default : {
             return {...state}
         }
