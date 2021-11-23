@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { useSelector, useDispatch } from "react-redux";
-import { clearUserErrors, startLoginAdmin } from "../../actions/userActions";
+import { clearUserErrors, startLoginAdmin, startLoginStudent } from "../../actions/userActions";
 
 const mainBoxStyle = {
     mt: 8,
@@ -63,7 +63,7 @@ const Login = (props) => {
             if (tab === "admin") {
                 dispatch(startLoginAdmin(values, resetForm, redirectHome))
             } else {
-                console.log("student", values)
+                dispatch(startLoginStudent(values, resetForm, redirectHome))
             }
         },
         // onReset: (values, { resetForm }) => {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 export const startAdminRegister = (formData, resetForm, redirectLogin) => {
     return (
@@ -43,7 +44,6 @@ export const startLoginAdmin = (formData, resetForm, redirect) => {
                 axios.post("https://dct-e-learning.herokuapp.com/api/admin/login", formData)
                     .then((response) => {
                         const result = response.data
-                        console.log(result)
                         if(result.hasOwnProperty("errors")) {
                             dispatch(addUserErrors(result))
                         } else {
@@ -73,7 +73,56 @@ export const startGetAdminDetails = (token) => {
             return (
                 Promise.all([adminDetails])
                     .then((response) => {
-                        console.log(response)
+                        const [ account ] = response
+                        dispatch(loadingUpdate())
+                        dispatch(addUserDetails(account.data))
+                    })
+                    .catch((err) => {
+                        alert(err.message)
+                    })
+            )
+        }
+    )
+}
+
+export const startLoginStudent = (formData, resetForm, redirect) => {
+    return (
+        (dispatch) => {
+            return (
+                axios.post("https://dct-e-learning.herokuapp.com/api/students/login", formData)
+                    .then((response) => {
+                        const result = response.data
+                        if(result.hasOwnProperty("errors")) {
+                            dispatch(addUserErrors(result))
+                        } else {
+                            alert("Successfully Logged in")
+                            dispatch(clearUserErrors())
+                            const decoded = jwt_decode(result.token)
+                            console.log(decoded)
+                            dispatch(startGetStudentDetails(decoded._id, result.token))
+                            localStorage.setItem("token", result.token)
+                            resetForm()
+                            redirect()
+                        }
+                    })
+            )
+        }
+    )
+}
+
+export const startGetStudentDetails = (id, token) => {
+    const studentDetails = axios.get(`https://dct-e-learning.herokuapp.com/api/students/${id}`, {
+        "headers": {
+            "Authorization": token
+        }
+    })
+
+    return (
+        (dispatch) => {
+            dispatch(loadingUpdate())
+            return (
+                Promise.all([studentDetails])
+                    .then((response) => {
                         const [ account ] = response
                         dispatch(loadingUpdate())
                         dispatch(addUserDetails(account.data))
